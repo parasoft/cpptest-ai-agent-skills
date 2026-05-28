@@ -83,7 +83,13 @@ RUN \
     mkdir actions-runner && cd actions-runner && \
     curl -o gh_runner_latest.json -L https://api.github.com/repos/actions/runner/releases/latest && \
     gh_runner_version=`grep tag_name gh_runner_latest.json | cut -d'"' -f4 | sed 's/^v//'` && \
-    gh_runner_arch=$(dpkg --print-architecture) && \
+    deb_arch="$(dpkg --print-architecture)"; \
+    case "$deb_arch" in \
+        (amd64) gh_runner_arch="x64" ;; \
+        (arm64) gh_runner_arch="arm64" ;; \
+        (armhf|arm) gh_runner_arch="arm" ;; \
+        (*) echo "Unsupported architecture: $deb_arch"; exit 1 ;; \
+    esac; \
     curl -o actions-runner-latest.tar.gz -L https://github.com/actions/runner/releases/download/v$gh_runner_version/actions-runner-linux-$gh_runner_arch-$gh_runner_version.tar.gz && \
     tar xzf ./actions-runner-latest.tar.gz && \
     ./bin/installdependencies.sh
