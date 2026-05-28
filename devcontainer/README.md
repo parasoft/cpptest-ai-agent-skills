@@ -15,11 +15,11 @@ This folder contains a `Dockerfile` for building a Debian-based image with:
 ## Build
 
 ```bash
-docker build --build-arg OPEN_API_KEY=YOURKEY --build-arg LICENSE_SERVER_URL=https://ls.company.com:8443 -t cpptest:latest .
+docker build --build-arg OPENAI_API_KEY=YOURKEY --build-arg LICENSE_SERVER_URL=https://ls.company.com:8443 -t cpptest:latest .
 ```
 
 SECURITY WARNING:  
-`OPEN_API_KEY` will be stored in the image in plain text, so make sure to use a key with limited permissions and do not share the image with untrusted parties, or update the Dockerfile to pass the key at runtime only.
+`OPENAI_API_KEY` will be stored in the image in plain text, so make sure to use a key with limited permissions and do not share the image with untrusted parties, or update the Dockerfile to pass the key at runtime only.
 
 ## Run
 

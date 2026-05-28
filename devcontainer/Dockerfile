@@ -5,7 +5,7 @@
 #    IMPORTANT: The OpenAI API key will be stored in the image in plain text,
 #    so make sure to use a key with limited permissions and do not share the image with untrusted parties.
 # 3. Run the following command in this directory to build the image:
-#    > docker build --build-arg OPEN_API_KEY=YOURKEY --build-arg LICENSE_SERVER_URL=https://ls.company.com:8443 -t cpptest:latest .
+#    > docker build --build-arg OPENAI_API_KEY=YOURKEY --build-arg LICENSE_SERVER_URL=https://ls.company.com:8443 -t cpptest:latest .
 # 4. Verify the image was created successfully:
 #    > docker images cpptest:latest
 #
@@ -31,7 +31,7 @@
 FROM debian:13
 
 # build-time parameters
-ARG OPEN_API_KEY=""
+ARG OPENAI_API_KEY=""
 ARG LICENSE_SERVER_URL=""
 
 # Install toolchains and utilities
@@ -111,7 +111,7 @@ RUN \
     echo 'model_reasoning_effort = "medium"' >> .codex/config.toml && \
     echo '[projects."/home/parasoft"]' >> .codex/config.toml && \
     echo 'trust_level = "trusted"' >> .codex/config.toml && \
-    echo '{"auth_mode":"apikey","OPENAI_API_KEY":"'$OPEN_API_KEY'"}' > .codex/auth.json
+    echo '{"auth_mode":"apikey","OPENAI_API_KEY":"'$OPENAI_API_KEY'"}' > .codex/auth.json
 
 # Create C/C++test configuration files - be sure to provide a license server URL as a build argument!
 WORKDIR /home/parasoft
