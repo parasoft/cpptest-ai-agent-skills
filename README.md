@@ -10,7 +10,6 @@
 - [Additional configuration for GitHub CI/CD](#additional-configuration-for-github-cicd)
 - [Using skills with C/C++test Professional](#using-skills-with-cctest-professional)
 - [Using skills with Windows PowerShell](#using-skills-with-windows-powershell)
-- [References](#references)
 
 ## Overview
 
@@ -20,10 +19,11 @@ A pre-configured demo project is available at https://github.com/parasoft/cpptes
 
 ## Prerequisites
 
-- AI coding agent installed and configured
 - C/C++test installed and configured
-- C/C++test's MCP server registered
+- AI coding agent installed and configured
 - GitHub CLI installed - for using the GitHub CI/CD pipeline
+
+> **Hint:** An exemplary Dockerfile is available in the `devcontainer` folder. See `devcontainer/README.md` for build and usage details.
 
 ## Skills overview
 
@@ -96,14 +96,3 @@ If you use the GitHub CI/CD pipeline, review the `Run C/C++test` step in `cpptes
 By default, the skills are prepared to work with a `bash` shell. To use the skills in a Windows-based environment with PowerShell, the `cpptest-analyze.sh` and `cpptest-agent-run.sh` scripts must be converted to PowerShell scripts (`cpptest-analyze.ps1` and `cpptest-agent-run.ps1`). Then update the `SKILL.md` files: replace `cpptest-analyze.sh` references with `cpptest-analyze.ps1`, and change the script invocation code block language from `bash` to `powershell`.
 
 Additionally, for the GitHub CI/CD pipeline, review and adjust `cpptest-autofix-github.yml` (replace `cpptest-agent-run.sh` with its `.ps1` counterpart).
-
-## References
-
-- Copilot skills:
-    - https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/create-skills
-- Claude Code skills:
-    - https://code.claude.com/docs/en/skills
-- Codex CLI skills:
-    - https://developers.openai.com/codex/skills
-- Gemini CLI skills:
-    - https://geminicli.com/docs/cli/skills
